@@ -22,4 +22,8 @@ export class CompletedComponent implements OnInit {
       }
     }, 2000);
   }
+
+  deleteTask(id: number) {
+    this.todos = this.todos.filter((todo) => todo.id !== id);
+  }
 }
