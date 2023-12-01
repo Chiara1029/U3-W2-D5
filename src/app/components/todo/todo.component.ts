@@ -44,4 +44,8 @@ export class TodoComponent implements OnInit {
       this.todos.splice(i, 1);
     }, 2000);
   }
+
+  deleteTask(id: number) {
+    this.todos = this.todos.filter((todo) => todo.id !== id);
+  }
 }
