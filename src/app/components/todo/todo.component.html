@@ -1,0 +1,43 @@
+<div class="container d-flex justify-content-center mt-5">
+  <form class="row g-3">
+    <div class="col-auto">
+      <label for="inputTask" class="visually-hidden">Task</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputTask"
+        placeholder="New Task"
+        [(ngModel)]="title"
+        name="title"
+        required
+        #inputTask="ngModel"
+      />
+    </div>
+    <div class="col-auto">
+      <button
+        type="submit"
+        class="btn btn-success mb-3"
+        (click)="addTask(inputTask)"
+      >
+        Add Task
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="container d-flex justify-content-center">
+  <ul>
+    <li *ngFor="let todo of todos; let i = index">
+      <ng-container *ngIf="!todo.completed">
+        {{ todo.title }}
+      </ng-container>
+      <button
+        type="submit"
+        class="btn btn-primary mb-3"
+        (click)="completedTask(todo.id, i)"
+      >
+        Completed
+      </button>
+    </li>
+  </ul>
+</div>

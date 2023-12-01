@@ -1,0 +1,9 @@
+<div class="container d-flex justify-content-center">
+  <ul>
+    <li *ngFor="let todo of todos; let i = index">
+      <ng-container *ngIf="todo.completed">
+        {{ todo.title }}
+      </ng-container>
+    </li>
+  </ul>
+</div>
