@@ -24,6 +24,20 @@ export class CompletedComponent implements OnInit {
   }
 
   deleteTask(id: number) {
-    this.todos = this.todos.filter((todo) => todo.id !== id);
+    setTimeout(() => {
+      this.todos = this.todos.splice(id - 1, 1);
+      console.log(this.todos);
+    }, 2000);
+  }
+
+  ngDoCheck() {
+    setTimeout(() => {
+      this.message = 'Loading tasks...';
+      const todos = this.todoSrv.getTasks();
+      this.todos = todos;
+      if (todos.length === 0) {
+        this.message = 'Oops, there are no tasks';
+      }
+    }, 2000);
   }
 }

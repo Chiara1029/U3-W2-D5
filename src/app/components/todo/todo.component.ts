@@ -34,6 +34,7 @@ export class TodoComponent implements OnInit {
           completed: false,
         });
         this.title = '';
+        console.log(this.todos);
       }, 2000);
     }
   }
@@ -42,10 +43,25 @@ export class TodoComponent implements OnInit {
     setTimeout(() => {
       this.todoSrv.updateTasks({ completed: true }, id);
       this.todos.splice(i, 1);
+      console.log(this.todos);
     }, 2000);
   }
 
   deleteTask(id: number) {
-    this.todos = this.todos.filter((todo) => todo.id !== id);
+    setTimeout(() => {
+      this.todos.splice(id - 1, 1);
+      console.log(this.todos);
+    }, 2000);
+  }
+
+  ngDoCheck() {
+    setTimeout(() => {
+      this.message = 'Loading tasks...';
+      const todos = this.todoSrv.getTasks();
+      this.todos = todos;
+      if (todos.length === 0) {
+        this.message = 'Oops, there are no tasks';
+      }
+    }, 2000);
   }
 }
