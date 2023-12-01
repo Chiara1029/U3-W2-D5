@@ -11,22 +11,30 @@ export class TodoComponent implements OnInit {
   todos: Todo[] = [];
   currentId = 1;
   title = '';
+  message: string = 'Loading tasks...';
 
   constructor(private todoSrv: TodoService) {}
 
-  async ngOnInit() {
-    const todos = await this.todoSrv.getTasks();
-    this.todos = todos;
+  ngOnInit() {
+    setTimeout(() => {
+      const todos = this.todoSrv.getTasks();
+      this.todos = todos;
+      if (todos.length === 0) {
+        this.message = 'Oops, there are no tasks';
+      }
+    }, 2000);
   }
 
   addTask(inputTask: any) {
     if (inputTask.valid) {
-      this.todos.push({
-        id: this.currentId++,
-        title: this.title,
-        completed: false,
-      });
-      this.title = '';
+      setTimeout(() => {
+        this.todos.push({
+          id: this.currentId++,
+          title: this.title,
+          completed: false,
+        });
+        this.title = '';
+      }, 2000);
     }
   }
 

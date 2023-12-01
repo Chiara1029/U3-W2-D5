@@ -25,19 +25,23 @@
   </form>
 </div>
 
-<div class="container d-flex justify-content-center">
-  <ul>
-    <li *ngFor="let todo of todos; let i = index">
-      <ng-container *ngIf="!todo.completed">
-        {{ todo.title }}
-      </ng-container>
-      <button
-        type="submit"
-        class="btn btn-primary mb-3"
-        (click)="completedTask(todo.id, i)"
+<p class="text-center" *ngIf="todos.length === 0">{{ message }}</p>
+
+<div class="container d-flex justify-content-center mt-5">
+  <div class="list-group">
+    <ng-container *ngFor="let todo of todos; let i = index">
+      <div
+        *ngIf="!todo.completed"
+        class="list-group-item d-flex justify-content-between align-items-center"
       >
-        Completed
-      </button>
-    </li>
-  </ul>
+        {{ todo.title }}
+        <button
+          class="btn btn-outline-success ms-3"
+          (click)="completedTask(todo.id, i)"
+        >
+          Completed
+        </button>
+      </div>
+    </ng-container>
+  </div>
 </div>
