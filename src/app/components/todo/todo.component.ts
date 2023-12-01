@@ -39,7 +39,9 @@ export class TodoComponent implements OnInit {
   }
 
   completedTask(id: number, i: number) {
-    this.todoSrv.updateTasks({ completed: true }, id);
-    this.todos.splice(i, 1);
+    setTimeout(() => {
+      this.todoSrv.updateTasks({ completed: true }, id);
+      this.todos.splice(i, 1);
+    }, 2000);
   }
 }
