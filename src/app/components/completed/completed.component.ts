@@ -23,21 +23,37 @@ export class CompletedComponent implements OnInit {
     }, 2000);
   }
 
-  deleteTask(id: number) {
+  restoreTask(id: number, i: number) {
     setTimeout(() => {
-      this.todos = this.todos.splice(id - 1, 1);
-      console.log(this.todos);
-    }, 2000);
-  }
-
-  ngDoCheck() {
-    setTimeout(() => {
-      this.message = 'Loading tasks...';
-      const todos = this.todoSrv.getTasks();
-      this.todos = todos;
+      this.todoSrv.updateTasks({ completed: false }, id);
+      this.todos.splice(i, 1);
+      let todos = this.todos;
       if (todos.length === 0) {
         this.message = 'Oops, there are no tasks';
       }
     }, 2000);
   }
+
+  deleteTask(id: number) {
+    setTimeout(() => {
+      const newTasks = [];
+      for (let i = 0; i < this.todos.length; i++) {
+        let tasks = this.todos;
+        if (id != tasks[i].id) {
+          newTasks.push(this.todos[i]);
+        }
+      }
+      this.todos = newTasks;
+      if (newTasks.length === 0) {
+        this.message = 'Oops, there are no tasks';
+      }
+    }, 2000);
+  }
+
+  // deleteTask(id: number) {
+  //   setTimeout(() => {
+  //     this.todos = this.todos.splice(id - 1, 1);
+  //     console.log(this.todos);
+  //   }, 2000);
+  // }
 }

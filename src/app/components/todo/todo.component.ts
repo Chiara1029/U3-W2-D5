@@ -50,15 +50,7 @@ export class TodoComponent implements OnInit {
   deleteTask(id: number) {
     setTimeout(() => {
       this.todos.splice(id - 1, 1);
-      console.log(this.todos);
-    }, 2000);
-  }
-
-  ngDoCheck() {
-    setTimeout(() => {
-      this.message = 'Loading tasks...';
-      const todos = this.todoSrv.getTasks();
-      this.todos = todos;
+      let todos = this.todos;
       if (todos.length === 0) {
         this.message = 'Oops, there are no tasks';
       }
