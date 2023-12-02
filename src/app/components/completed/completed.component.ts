@@ -36,24 +36,14 @@ export class CompletedComponent implements OnInit {
 
   deleteTask(id: number) {
     setTimeout(() => {
-      let newTasks = [];
       for (let i = 0; i < this.todos.length; i++) {
-        let tasks = this.todos;
-        if (id != tasks[i].id) {
-          newTasks.push(this.todos[i]);
+        if (id == this.todos[i].id) {
+          this.todos.splice(i, 1);
         }
       }
-      this.todos = newTasks;
-      if (newTasks.length === 0) {
+      if (this.todos.length === 0) {
         this.message = 'Oops, there are no tasks';
       }
     }, 2000);
   }
-
-  // deleteTask(id: number) {
-  //   setTimeout(() => {
-  //     this.todos = this.todos.splice(id - 1, 1);
-  //     console.log(this.todos);
-  //   }, 2000);
-  // }
 }
