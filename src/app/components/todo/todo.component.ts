@@ -49,9 +49,15 @@ export class TodoComponent implements OnInit {
 
   deleteTask(id: number) {
     setTimeout(() => {
-      this.todos.splice(id - 1, 1);
-      let todos = this.todos;
-      if (todos.length === 0) {
+      let newTasks = [];
+      for (let i = 0; i < this.todos.length; i++) {
+        let tasks = this.todos;
+        if (id != tasks[i].id) {
+          newTasks.push(this.todos[i]);
+        }
+      }
+      this.todos = newTasks;
+      if (newTasks.length === 0) {
         this.message = 'Oops, there are no tasks';
       }
     }, 2000);

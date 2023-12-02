@@ -36,7 +36,7 @@ export class CompletedComponent implements OnInit {
 
   deleteTask(id: number) {
     setTimeout(() => {
-      const newTasks = [];
+      let newTasks = [];
       for (let i = 0; i < this.todos.length; i++) {
         let tasks = this.todos;
         if (id != tasks[i].id) {
